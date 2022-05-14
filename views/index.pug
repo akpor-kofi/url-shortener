@@ -1,0 +1,32 @@
+
+html
+    head 
+        title= title
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous")
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js' crossorigin="anonymous" defer)
+        script(src="/script.js" type="module" defer)
+
+    .container 
+        body 
+        h1 URL Shortener 
+        form.my-4.form-inline 
+            label.sr-only(for='fullUrl') URL
+            input#fullUrl.form-control.mr-2.col(type="url" name='fullUrl' placeholder="url" required) 
+            button.btn.btn-success(type="submit") Shrink
+        table.table.table-striped.table-responsive
+            thead 
+                tr 
+                    th Full url
+                    th Short url
+                    th Clicks 
+            tbody
+                each url in urls
+                    tr 
+                        td 
+                            a(href=`${url.fullUrl}`)=url.fullUrl
+                        td 
+                            a(href=`/${url.shortUrl}`)=url.shortUrl
+                        td= url.count
+                    
+                
+    
